@@ -23,6 +23,7 @@ import android.widget.TextView
 
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
+import android.util.Patterns
 
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -143,7 +144,8 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
     private fun isEmailValid(email: String): Boolean {
         //TODO: Replace this with your own logic
-        return email.contains("@")
+        return  !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.
+                matcher(email).matches()
     }
 
     private fun isPasswordValid(password: String): Boolean {
